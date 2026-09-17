@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLADE — Barbearia Premium</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #080808;
+  --bg2: #0f0f0f;
+  --gold: #c9a84c;
+  --gold2: #f0c96e;
+  --red: #e63946;
+  --text: #f0ede8;
+  --muted: #888;
+  --border: rgba(201,168,76,0.2);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 5%;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2rem;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-logo span {
+  -webkit-text-fill-color: var(--red);
+}
+
+.nav-links {
+  display: flex; gap: 2rem; list-style: none;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  background: var(--gold);
+  color: #000 !important;
+  padding: 0.5rem 1.4rem;
+  border-radius: 2px;
+  font-weight: 700 !important;
+  transition: background 0.3s !important;
+}
+
+.nav-cta:hover { background: var(--gold2) !important; color: #000 !important; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 0 5%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 30% 80%, rgba(230,57,70,0.05) 0%, transparent 60%);
+}
+
+/* Decorative lines */
+.hero-lines {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+  overflow: hidden;
+}
+
+.hero-lines::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(201,168,76,0.04) 50%, transparent 100%);
+  border-left: 1px solid var(--border);
+}
+
+.line-deco {
+  position: absolute;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  width: 1px;
+  opacity: 0.15;
+  animation: linePulse 4s ease-in-out infinite;
+}
+
+.line-deco:nth-child(1) { height: 60%; top: 20%; left: 20%; animation-delay: 0s; }
+.line-deco:nth-child(2) { height: 40%; top: 30%; left: 50%; animation-delay: 1s; }
+.line-deco:nth-child(3) { height: 50%; top: 25%; left: 80%; animation-delay: 2s; }
+
+@keyframes linePulse {
+  0%, 100% { opacity: 0.08; transform: scaleY(0.8); }
+  50% { opacity: 0.25; transform: scaleY(1); }
+}
+
+/* Big SVG razor */
+.hero-icon {
+  position: absolute; right: 5%; top: 50%;
+  transform: translateY(-50%) rotate(-15deg);
+  opacity: 0.06;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 700px;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid var(--border);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+.hero h1 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 .line1 { display: block; color: var(--text); }
+.hero h1 .line2 {
+  display: block;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero h1 .line3 {
+  display: block;
+  -webkit-text-stroke: 1px rgba(240,237,232,0.2);
+  color: transparent;
+}
+
+.hero p {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.3px;
+}
+
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #000;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 30px rgba(201,168,76,0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(201,168,76,0.5);
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(240,237,232,0.2);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-stats {
+  display: flex; gap: 2.5rem; margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.2rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* FEATURES */
+.features {
+  padding: 7rem 5%;
+  background: var(--bg2);
+  position: relative;
+}
+
+.features::before {
+  content: '';
+  position: absolute; top: 0; left: 5%; right: 5%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.section-label {
+  text-align: center;
+  font-size: 0.72rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 400px;
+  margin: 0 auto 4rem;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.feature-card {
+  background: var(--bg2);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.feature-card:hover { background: #141414; }
+.feature-card:hover::before { transform: scaleX(1); }
+
+.feature-icon {
+  width: 52px; height: 52px;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+  background: rgba(201,168,76,0.15);
+  border-color: var(--gold);
+}
+
+.feature-icon svg { transition: transform 0.3s; }
+.feature-card:hover .feature-icon svg { transform: scale(1.1); }
+
+.feature-num {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3.5rem;
+  color: rgba(201,168,76,0.05);
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.feature-card:hover .feature-num { color: rgba(201,168,76,0.1); }
+
+.feature-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+.feature-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+/* CTA BANNER */
+.cta-section {
+  padding: 7rem 5%;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 50%, rgba(230,57,70,0.05) 100%);
+}
+
+.cta-section::before, .cta-section::after {
+  content: '';
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.cta-section::before { top: 0; }
+.cta-section::after { bottom: 0; }
+
+/* Corner decorations */
+.corner {
+  position: absolute;
+  width: 60px; height: 60px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.3;
+}
+
+.corner-tl { top: 3rem; left: 5%; border-width: 1px 0 0 1px; }
+.corner-tr { top: 3rem; right: 5%; border-width: 1px 1px 0 0; }
+.corner-bl { bottom: 3rem; left: 5%; border-width: 0 0 1px 1px; }
+.corner-br { bottom: 3rem; right: 5%; border-width: 0 1px 1px 0; }
+
+.cta-section .section-label { margin-bottom: 1.5rem; }
+
+.cta-headline {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(3rem, 7vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.cta-headline .accent {
+  display: block;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 450px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.cta-btns {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+}
+
+.cta-info {
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+.cta-info span { color: var(--gold); }
+
+/* FOOTER */
+footer {
+  background: #050505;
+  padding: 3rem 5%;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-links {
+  display: flex; gap: 1.5rem; list-style: none;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-socials {
+  display: flex; gap: 1rem;
+}
+
+.social-btn {
+  width: 38px; height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+}
+
+.social-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.08);
+}
+
+.footer-copy {
+  width: 100%;
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero { padding-top: 6rem; }
+  .hero-icon { display: none; }
+  .hero-lines { display: none; }
+  .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .corner { display: none; }
+}
+
+/* SCROLL FADE IN */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BLA<span>D</span>E</div>
+  <ul class="nav-links">
+    <li><a href="#features">Serviços</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#agendar" class="nav-cta">Agendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-lines">
+    <div class="line-deco"></div>
+    <div class="line-deco"></div>
+    <div class="line-deco"></div>
+  </div>
+
+  <!-- Big decorative razor SVG -->
+  <div class="hero-icon">
+    <svg width="420" height="420" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="20" y="10" width="60" height="10" rx="2" fill="#c9a84c"/>
+      <polygon points="20,20 80,20 90,80 10,80" fill="#c9a84c" opacity="0.6"/>
+      <rect x="35" y="80" width="30" height="8" rx="2" fill="#c9a84c"/>
+      <line x1="50" y1="20" x2="50" y2="80" stroke="#080808" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">Barbearia Premium — Est. 2018</div>
+    <h1>
+      <span class="line1">THE ART</span>
+      <span class="line2">OF BEING</span>
+      <span class="line3">SHARP</span>
+    </h1>
+    <p>Onde precisão encontra estilo. Cada corte é uma obra de arte executada por mestres da navalha, para homens que não aceitam menos que o melhor.</p>
+    <div class="hero-btns">
+      <a href="#agendar" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agendar Agora
+      </a>
+      <a href="#features" class="btn-secondary">
+        Ver Serviços
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">6K+</div>
+        <div class="stat-label">Clientes Satisfeitos</div>
+      </div>
+      <div>
+        <div class="stat-num">12</div>
+        <div class="stat-label">Anos de Experiência</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Avaliação Média</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-label fade-in">O que oferecemos</div>
+  <h2 class="section-title fade-in">NOSSOS SERVIÇOS</h2>
+  <p class="section-sub fade-in">Técnicas clássicas aliadas a tendências modernas. Cada detalhe pensado para você.</p>
+
+  <div class="features-grid">
+    <!-- Card 1 -->
+    <div class="feature-card fade-in">
+      <span class="feature-num">01</span>
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M6 3c0 0 1 2 1 4s-1 4-1 4 4-1 6-1 6 1 6 1-1-2-1-4 1-4 1-4"/>
+          <path d="M6 11c0 0-3 2-3 5s3 5 3 5h12s3-2 3-5-3-5-3-5"/>
+          <line x1="12" y1="11" x2="12" y2="21"/>
+        </svg>
+      </div>
+      <div class="feature-title">Corte Clássico</div>
+      <p class="feature-desc">Do fade perfeito ao corte social refinado. Técnicas tradicionais com acabamento impecável que define sua identidade.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="feature-card fade-in">
+      <span class="feature-num">02</span>
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M3 6c0 0 3-2 9-2s9 2 9 2"/>
+          <path d="M5 6v4c0 3.31 3.13 6 7 6s7-2.69 7-6V6"/>
+          <line x1="12" y1="16" x2="12" y2="21"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+        </svg>
+      </div>
+      <div class="feature-title">Barba & Navalha</div>
+      <p class="feature-desc">Modelagem de barba com navalha quente, toalha árabe e produtos premium. Uma experiência sensorial completa.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="feature-card fade-in">
+      <span class="feature-num">03</span>
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <circle cx="12" cy="8" r="5"/>
+          <path d="M3 21v-2a7 7 0 0 1 14 0v2"/>
+          <path d="M16 11c2.5.5 5 2 5 5v2"/>
+          <line x1="19" y1="8" x2="21" y2="10"/>
+        </svg>
+      </div>
+      <div class="feature-title">Pigmentação</div>
+      <p class="feature-desc">Cobertura de falhas e uniformização da barba com pigmentação natural. Resultado duradouro e discreto.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="feature-card fade-in">
+      <span class="feature-num">04</span>
+      <div class="feature-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+          <path d="M2 17l10 5 10-5"/>
+          <path d="M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="feature-title">Ritual Premium</div>
+      <p class="feature-desc">Pacote completo: corte + barba + hidratação + massagem capilar. A experiência definitiva em cuidado masculino.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section" id="agendar">
+  <div class="cta-bg"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="section-label fade-in">Próximo passo</div>
+  <h2 class="cta-headline fade-in">
+    PRONTO PARA
+    <span class="accent">SER AFIADO?</span>
+  </h2>
+  <p class="cta-sub fade-in">Agende seu horário agora e experimente o padrão BLADE de excelência. Vagas limitadas — reserva em 60 segundos.</p>
+
+  <div class="cta-btns fade-in">
+    <a href="https://wa.me/5511999999999" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <a href="tel:+5511999999999" class="btn-secondary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Ligar Agora
+    </a>
+  </div>
+  <p class="cta-info">
+    Horários: <span>Seg – Sáb, 09h às 20h</span> &nbsp;|&nbsp; Rua da Navalha, 88 – <span>Centro</span>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="footer-inner">
+    <div class="footer-logo">BLADE</div>
+    <ul class="footer-links">
+      <li><a href="#">Serviços</a></li>
+      <li><a href="#">Galeria</a></li>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+    <div class="footer-socials">
+      <a href="#" class="social-btn" title="Instagram">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      </a>
+      <a href="#" class="social-btn" title="TikTok">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      </a>
+      <a href="#" class="social-btn" title="WhatsApp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-copy">
+    © 2024 BLADE Barbearia Premium. Todos os direitos reservados. — Feito com precisão e estilo.
+  </div>
+</footer>
+
+<script>
+  // Scroll fade in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.boxShadow =
+      window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.6)' : 'none';
+  });
+</script>
+</body>
+</html>
