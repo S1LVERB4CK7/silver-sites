@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Landing Page Profissional por R$50 | Oferta por Tempo Limitado</title>
+<meta name="description" content="Criação de landing pages profissionais por apenas R$50. Oferta especial disponível por tempo limitado.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --bg-primary: #0f0e0c;
+  --bg-secondary: #1a1815;
+  --bg-card: #1e1c18;
+  --bg-card-hover: #252219;
+  --accent: #a8c44a;
+  --accent-dark: #8aaa2a;
+  --accent-glow: rgba(168,196,74,0.25);
+  --accent-subtle: rgba(168,196,74,0.08);
+  --text-primary: #f0ece4;
+  --text-secondary: #a89f8c;
+  --text-muted: #6b6355;
+  --border: rgba(168,196,74,0.15);
+  --border-card: rgba(240,236,228,0.06);
+  --warm-1: #2a2318;
+  --warm-2: #1f1c14;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-accent: 0 0 24px rgba(168,196,74,0.2);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── GRADIENTS BG ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%, rgba(168,196,74,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 80%, rgba(139,115,85,0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── UTILITY ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+.accent { color: var(--accent); }
+.text-center { text-align: center; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 16px rgba(168,196,74,0.3), 0 4px 20px rgba(0,0,0,0.4); }
+  50%       { box-shadow: 0 0 32px rgba(168,196,74,0.55), 0 4px 20px rgba(0,0,0,0.4); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes blink-border {
+  0%, 100% { border-color: rgba(168,196,74,0.4); }
+  50%       { border-color: rgba(168,196,74,0.9); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.fade-up { animation: fadeUp 0.7s ease both; }
+.fade-up-1 { animation: fadeUp 0.7s 0.1s ease both; }
+.fade-up-2 { animation: fadeUp 0.7s 0.2s ease both; }
+.fade-up-3 { animation: fadeUp 0.7s 0.35s ease both; }
+.fade-up-4 { animation: fadeUp 0.7s 0.5s ease both; }
+.fade-up-5 { animation: fadeUp 0.7s 0.65s ease both; }
+
+/* ── HEADER ── */
+header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(15,14,12,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-card);
+  padding: 14px 0;
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo {
+  font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.logo span { color: var(--accent); }
+.header-cta {
+  background: var(--accent);
+  color: #0f0e0c;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+}
+.header-cta:hover { background: #bdd45e; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  padding: 130px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 80%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5.5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  max-width: 780px;
+}
+.hero h1 .price-hero {
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+.hero h1 .price-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0; right: 0;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+
+/* ── COUNTDOWN ── */
+.countdown-wrap {
+  margin-bottom: 36px;
+}
+.countdown-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.countdown {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--warm-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 24px;
+}
+.cd-block {
+  text-align: center;
+  min-width: 56px;
+}
+.cd-num {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.cd-lbl {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+.cd-sep {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 14px;
+  opacity: 0.5;
+}
+.countdown-note {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+/* OFFER ENDED STATE */
+.offer-ended-msg {
+  display: none;
+  background: rgba(180,60,60,0.1);
+  border: 1px solid rgba(200,80,80,0.3);
+  border-radius: var(--radius);
+  padding: 14px 24px;
+  color: #e07070;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  background: var(--accent);
+  color: #0f0e0c;
+  font-weight: 800;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  padding: 18px 32px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  animation: pulse-glow 2.5s ease-in-out infinite;
+  border: none; cursor: pointer;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+.btn-primary:hover { background: #bdd45e; transform: translateY(-2px); }
+.btn-primary:disabled, .btn-primary.disabled {
+  background: #3a3a3a;
+  color: #6b6355;
+  animation: none;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  padding: 16px 28px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  letter-spacing: 0.03em;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  width: 100%; max-width: 480px;
+  text-align: center;
+}
+.btn-secondary:hover { background: var(--accent-subtle); border-color: var(--accent); transform: translateY(-1px); }
+
+.cta-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+.cta-group { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+/* ── SECTION GENERIC ── */
+section { padding: 80px 0; position: relative; z-index: 1; }
+.section-divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-card), transparent);
+  margin: 0;
+}
+
+.section-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(168,196,74,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+}
+.card:hover::before { opacity: 1; }
+
+.card-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ── IDEAL SECTION ── */
+.ideal-section { background: var(--bg-secondary); }
+.ideal-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 40px;
+}
+.ideal-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  transition: border-color 0.2s, background 0.2s;
+}
+.ideal-list li:hover {
+  border-color: rgba(168,196,74,0.2);
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+.ideal-list li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── OFFER SECTION ── */
+.offer-section {
+  background: var(--warm-2);
+  position: relative;
+  overflow: hidden;
+}
+.offer-section::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(168,196,74,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.offer-price-box {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 20px 0;
+}
+.offer-currency { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.offer-amount { font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 900; color: var(--accent); letter-spacing: -0.04em; line-height: 1; }
+.offer-only { font-size: 1rem; color: var(--text-muted); }
+
+.offer-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(168,196,74,0.12);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+}
+
+/* ── URGENCY CARD ── */
+.urgency-card {
+  background: var(--bg-card);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  margin-top: 48px;
+  animation: blink-border 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+.urgency-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(168,196,74,0.04) 0%, transparent 70%);
+}
+.urgency-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.urgency-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ── HOW IT WORKS ── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+.step {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  padding: 28px 22px;
+  position: relative;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.step:hover { transform: translateY(-3px); border-color: rgba(168,196,74,0.2); }
+.step-num {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: rgba(168,196,74,0.15);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.step-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.step-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ── FINAL CTA ── */
+.final-cta {
+  background: var(--bg-secondary);
+  text-align: center;
+}
+.final-cta .section-title { max-width: 600px; margin: 0 auto 16px; }
+.final-cta .section-sub { margin: 0 auto 36px; }
+.final-cta .cta-group { align-items: center; }
+.final-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-card);
+  padding: 32px 0;
+  text-align: center;
+}
+.footer-logo { font-weight: 800; font-size: 1rem; margin-bottom: 8px; }
+.footer-logo span { color: var(--accent); }
+.footer-text { font-size: 0.78rem; color: var(--text-muted); line-height: 1.7; }
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position: fixed;
+  bottom: 24px; right: 24px;
+  z-index: 200;
+  width: 58px; height: 58px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none;
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: float 3s ease-in-out infinite;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
+.wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .hero { padding: 110px 0 60px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .ideal-list { grid-template-columns: 1fr; }
+  .countdown { padding: 12px 16px; gap: 6px; }
+  .cd-num { font-size: 1.8rem; }
+  .cd-block { min-width: 44px; }
+  .urgency-card { padding: 24px 18px; }
+  .btn-primary, .btn-secondary { max-width: 100%; font-size: 0.9rem; padding: 16px 20px; }
+}
+@media (min-width: 768px) {
+  .cta-group { flex-direction: column; align-items: flex-start; }
+  .final-cta .cta-group { align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <div class="container header-inner">
+    <div class="logo">dev<span>page</span>.studio</div>
+    <a href="#" class="header-cta js-wa-btn">💬 Falar no WhatsApp</a>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <div class="badge fade-up">⚡ OFERTA RELÂMPAGO</div>
+    <h1 class="fade-up-1">
+      Sua Landing Page Profissional<br>
+      por apenas <span class="price-hero">R$50.</span>
+    </h1>
+    <p class="hero-sub fade-up-2">
+      Uma página moderna para apresentar seu negócio, serviço ou produto na internet —
+      com uma oferta especial disponível por apenas 2 horas.
+    </p>
+
+    <div class="countdown-wrap fade-up-3">
+      <p class="countdown-label">⏱ A oferta encerra em</p>
+      <div class="countdown" id="countdown-hero">
+        <div class="cd-block">
+          <div class="cd-num" id="h1">00</div>
+          <div class="cd-lbl">horas</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="m1">00</div>
+          <div class="cd-lbl">min</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="s1">00</div>
+          <div class="cd-lbl">seg</div>
+        </div>
+      </div>
+      <p class="countdown-note">Essa oferta termina quando o tempo acabar.</p>
+    </div>
+
+    <div class="offer-ended-msg" id="ended-hero">🚫 OFERTA ENCERRADA — Entre em contato para verificar disponibilidade.</div>
+
+    <div class="cta-group fade-up-4">
+      <a href="#" class="btn-primary js-wa-btn" id="cta-hero">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.428a.5.5 0 00.609.61l5.652-1.464A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.775-.5-5.373-1.376l-.385-.217-3.99 1.033 1.058-3.879-.232-.399A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        QUERO MINHA LANDING PAGE POR R$50
+      </a>
+      <p class="cta-note">Fale comigo agora e explique o que você precisa.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── O QUE VOCÊ RECEBE ── -->
+<section>
+  <div class="container">
+    <p class="section-tag">O que está incluso</p>
+    <h2 class="section-title">Por R$50, você recebe uma página feita<br>para apresentar sua oferta.</h2>
+    <p class="section-sub">Sem enrolação — veja o que está incluso nessa oferta especial.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <div class="card-title">Apresentação profissional</div>
+        <p class="card-desc">Uma página organizada para mostrar seu negócio, serviço, produto ou projeto de forma clara e atrativa.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📱</span>
+        <div class="card-title">Responsiva</div>
+        <p class="card-desc">Layout adaptado para celular, tablet e computador — seu cliente vê bem em qualquer tela.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <div class="card-title">Página rápida</div>
+        <p class="card-desc">Código otimizado para uma experiência simples e rápida, sem travamentos ou demora para carregar.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔗</span>
+        <div class="card-title">Botões de contato</div>
+        <p class="card-desc">WhatsApp, Instagram, formulário ou outros links que você precisar para facilitar o contato dos seus clientes.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎨</span>
+        <div class="card-title">Visual personalizado</div>
+        <p class="card-desc">A página será criada de acordo com o objetivo e identidade do seu projeto, não é um template genérico.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚀</span>
+        <div class="card-title">Pronta para publicar</div>
+        <p class="card-desc">Estrutura preparada para colocar sua página no ar — você recebe os arquivos prontos para uso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── IDEAL PARA VOCÊ ── -->
+<section class="ideal-section">
+  <div class="container">
+    <p class="section-tag">Para quem é</p>
+    <h2 class="section-title">Isso pode ser para você se...</h2>
+    <ul class="ideal-list">
+      <li>Você tem um negócio e precisa de uma página simples</li>
+      <li>Você trabalha como autônomo ou freelancer</li>
+      <li>Você vende produtos ou serviços</li>
+      <li>Você precisa divulgar uma oferta</li>
+      <li>Você quer uma presença profissional na internet</li>
+      <li>Você precisa de uma página para direcionar clientes para o WhatsApp</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── EXEMPLOS DE USO ── -->
+<section>
+  <div class="container">
+    <p class="section-tag">Exemplos de uso</p>
+    <h2 class="section-title">Uma landing page pode servir para<br>praticamente qualquer oferta.</h2>
+    <p class="section-sub">Se você precisa apresentar algo na internet, uma landing page resolve.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🔧</span>
+        <div class="card-title">Prestadores de serviço</div>
+        <p class="card-desc">Divulgue seu serviço e facilite o contato. Eletricista, encanador, designer, fotógrafo — qualquer serviço.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💼</span>
+        <div class="card-title">Profissionais autônomos</div>
+        <p class="card-desc">Mostre quem você é e o que oferece. Tenha um endereço online profissional para compartilhar com clientes.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏪</span>
+        <div class="card-title">Pequenos negócios</div>
+        <p class="card-desc">Tenha uma página profissional para apresentar sua empresa, mesmo que ainda pequena ou nova no mercado.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <div class="card-title">Produtos</div>
+        <p class="card-desc">Apresente seu produto e direcione o visitante para comprar ou chamar no WhatsApp para fechar negócio.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📅</span>
+        <div class="card-title">Eventos</div>
+        <p class="card-desc">Divulgue informações do seu evento e facilite inscrições ou confirmação de presença dos participantes.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💡</span>
+        <div class="card-title">Projetos pessoais</div>
+        <p class="card-desc">Apresente sua ideia, startup, projeto ou portfólio de forma profissional e organizada para quem precisar ver.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── OFFER SECTION ── -->
+<section class="offer-section">
+  <div class="container text-center">
+    <div class="offer-badge">⏱ DISPONÍVEL POR APENAS 2 HORAS</div>
+    <h2 class="section-title">R$50. Só isso.</h2>
+    <p class="section-sub" style="margin: 0 auto 24px;">
+      Estou fazendo uma oferta especial para fechar os primeiros projetos:
+      landing pages por apenas R$50.
+    </p>
+
+    <div class="offer-price-box">
+      <span class="offer-currency">R$</span>
+      <span class="offer-amount">50</span>
+    </div>
+
+    <div class="countdown-wrap" style="margin-bottom:32px;">
+      <p class="countdown-label">⏱ Oferta encerra em</p>
+      <div class="countdown" id="countdown-offer" style="display:inline-flex;">
+        <div class="cd-block">
+          <div class="cd-num" id="h2">00</div>
+          <div class="cd-lbl">horas</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="m2">00</div>
+          <div class="cd-lbl">min</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="s2">00</div>
+          <div class="cd-lbl">seg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-ended-msg" id="ended-offer" style="max-width:480px;margin:0 auto 16px;">🚫 OFERTA ENCERRADA — Entre em contato para verificar disponibilidade.</div>
+
+    <div class="cta-group" style="align-items:center;">
+      <a href="#" class="btn-primary js-wa-btn" id="cta-offer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.428a.5.5 0 00.609.61l5.652-1.464A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.775-.5-5.373-1.376l-.385-.217-3.99 1.033 1.058-3.879-.232-.399A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        QUERO APROVEITAR A OFERTA
+      </a>
+    </div>
+
+    <!-- URGENCY CARD -->
+    <div class="urgency-card" style="max-width:620px;margin:48px auto 0;text-align:left;">
+      <div class="urgency-title">⚠️ O TEMPO ESTÁ CORRENDO</div>
+      <p class="urgency-text">
+        Essa condição de R$50 fica disponível somente durante as próximas 2 horas.
+        Depois que o contador chegar a zero, a oferta será encerrada.
+        Aproveite agora se você precisa de uma página profissional.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── HOW IT WORKS ── -->
+<section>
+  <div class="container">
+    <p class="section-tag">Processo</p>
+    <h2 class="section-title">Como funciona</h2>
+    <p class="section-sub">Simples e direto — em quatro passos você já tem sua página pronta.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Você chama</div>
+        <p class="step-desc">Clique no botão e fale comigo pelo WhatsApp para iniciar o processo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Você explica o que precisa</div>
+        <p class="step-desc">Me conte qual negócio, serviço, produto ou projeto você quer divulgar.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Eu desenvolvo</div>
+        <p class="step-desc">A landing page é criada de acordo com o objetivo combinado entre nós.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Você recebe</div>
+        <p class="step-desc">A página fica pronta para ser publicada — você recebe tudo organizado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── FINAL CTA ── -->
+<section class="final-cta">
+  <div class="container">
+    <p class="section-tag">Não perca a oferta</p>
+    <h2 class="section-title">Quer uma landing page por R$50?</h2>
+    <p class="section-sub">
+      A oferta está disponível somente durante o contador.
+      Se você precisa de uma página, esse é o momento de me chamar.
+    </p>
+
+    <div class="countdown-wrap" style="margin-bottom:32px;">
+      <p class="countdown-label">⏱ Tempo restante</p>
+      <div class="countdown" id="countdown-final" style="display:inline-flex;">
+        <div class="cd-block">
+          <div class="cd-num" id="h3">00</div>
+          <div class="cd-lbl">horas</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="m3">00</div>
+          <div class="cd-lbl">min</div>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-block">
+          <div class="cd-num" id="s3">00</div>
+          <div class="cd-lbl">seg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-ended-msg" id="ended-final" style="max-width:480px;margin:0 auto 16px;">🚫 OFERTA ENCERRADA — Entre em contato para verificar disponibilidade.</div>
+
+    <div class="cta-group">
+      <a href="#" class="btn-primary js-wa-btn" id="cta-final">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.428a.5.5 0 00.609.61l5.652-1.464A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.775-.5-5.373-1.376l-.385-.217-3.99 1.033 1.058-3.879-.232-.399A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        CHAMAR NO WHATSAPP AGORA
+      </a>
+      <p class="final-note">Oferta válida somente durante o período exibido no contador.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">dev<span>page</span>.studio</div>
+    <p class="footer-text">
+      Criação de landing pages profissionais · Oferta por tempo limitado<br>
+      © 2025 · Todos os direitos reservados
+    </p>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a href="#" class="wa-float js-wa-btn" title="Falar no WhatsApp" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.121 1.532 5.85L.057 23.428a.5.5 0 00.609.61l5.652-1.464A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.946 0-3.775-.5-5.373-1.376l-.385-.217-3.99 1.033 1.058-3.879-.232-.399A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<script>
+  // ── CONFIG ──
+  const WHATSAPP_NUMBER = "5511911375655";
+  const WA_MSG = encodeURIComponent("Olá! Vi a oferta de landing page por R$50 e quero saber mais.");
+  const WA_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MSG}`;
+  const OFFER_DURATION = 2 * 60 * 60 * 1000; // 2 horas em ms
+  const LS_KEY = "lp50_offer_start";
+
+  // ── WHATSAPP LINKS ──
+  document.querySelectorAll('.js-wa-btn').forEach(el => {
+    el.addEventListener('click', function(e) {
+      if (this.classList.contains('disabled')) return;
+      e.preventDefault();
+      window.open(WA_URL, '_blank');
+    });
+  });
+
+  // ── COUNTDOWN ──
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function setCountdownDisplay(h, m, s) {
+    ['1','2','3'].forEach(i => {
+      document.getElementById('h' + i).textContent = pad(h);
+      document.getElementById('m' + i).textContent = pad(m);
+      document.getElementById('s' + i).textContent = pad(s);
+    });
+  }
+
+  function handleOfferEnded() {
+    // Show ended messages
+    document.querySelectorAll('.offer-ended-msg').forEach(el => el.style.display = 'block');
+    // Disable promo CTAs
+    ['cta-hero','cta-offer','cta-final'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add('disabled');
+        el.textContent = 'OFERTA ENCERRADA';
+      }
+    });
+    // Set counters to zero
+    setCountdownDisplay(0, 0, 0);
+  }
+
+  function initCountdown() {
+    // Get or set start time
+    let startTime = localStorage.getItem(LS_KEY);
+    if (!startTime) {
+      startTime = Date.now();
+      localStorage.setItem(LS_KEY, startTime);
+    } else {
+      startTime = parseInt(startTime, 10);
+    }
+
+    function tick() {
+      const elapsed = Date.now() - startTime;
+      const remaining = OFFER_DURATION - elapsed;
+
+      if (remaining <= 0) {
+        handleOfferEnded();
+        return;
+      }
+
+      const totalSec = Math.floor(remaining / 1000);
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      setCountdownDisplay(h, m, s);
+
+      setTimeout(tick, 1000);
+    }
+
+    tick();
+  }
+
+  initCountdown();
+
+  // ── HEADER CTA fix ──
+  document.querySelector('.header-cta').href = WA_URL;
+  document.querySelector('.header-cta').target = '_blank';
+</script>
+</body>
+</html>
